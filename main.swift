@@ -2,6 +2,9 @@ var turn = 0
 
 class Board {
 	var boardPieces: [[[StaticChessPiece]]] = [[[],[],[],[],[],[],[],[]],[[],[],[],[],[],[],[],[]],[[],[],[],[],[],[],[],[]],[[],[],[],[],[],[],[],[]],[[],[],[],[],[],[],[],[]],[[],[],[],[],[],[],[],[]],[[],[],[],[],[],[],[],[]],[[],[],[],[],[],[],[],[]]]
+	func setBoard(setX: Int, setY: Int, piece: StaticChessPiece) {
+		boardPieces[setX][setY].append(piece)
+	}
 }
 
 
@@ -12,7 +15,7 @@ class StaticChessPiece {
 	var y: Int = 0
 	var num: Int = 0
 	var whoseTurn = true
-	init(color: Bool, x: Int, y: Int, num: Int){
+	init(color: Bool, x: Int, y: Int, num: Int) {
 		self.color = color
 		self.x = x
 		self.y = y
@@ -31,7 +34,7 @@ class StaticChessPiece {
 	}*/
 }
 
-let chessBoard = Board()
+var chessBoard = Board()
 
 class ChessPiece: StaticChessPiece {
 	override func move(x: Int, y: Int, toX: Int, toY: Int) {
@@ -88,26 +91,27 @@ class Bishop: ChessPiece {
 
 class Rook: ChessPiece {
 	override func isPossible(_ x: Int, _ y: Int, _ toX: Int, _ toY: Int, _ color: Bool) -> Bool {
-		if toX - x == 0{
-			if toY - y != 0{
+		if toX - x == 0 {
+			if toY - y != 0 {
 				return true
 			}
-			else{
+			else {
 				return false
 			}
 		}
-	else if toY - y == 0{
-		if toX - x != 0{
+	else if toY - y == 0 {
+		if toX - x != 0 {
 			return true
 		}
-		else{
+		else {
 			return false
 		}
 	}
 }
 
 //Board Setup
-chessBoard.boardPieces[0][0].append(let BR1: StaticChessPiece = Rook(color: false, x: 0, y: 0, num: 1))
+var BR1: StaticChessPiece = Rook(color: false, x: 0, y: 0, num: 1)
+chessBoard.setBoard(setX: 0, setY: 0, piece: BR1)
 
 /*
 
