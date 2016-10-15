@@ -18,7 +18,7 @@ class StaticChessPiece {
 		self.y = y
 		self.num = num
 	}
-	func isPossible( x: Int,  y: Int,  toX: Int,  toY: Int, _ color: Bool) -> Bool {
+	func isPossible(_ x: Int, _ y: Int, _ toX: Int, _ toY: Int, _ color: Bool) -> Bool {
 		return true
 	}
 	func move(x: Int, y: Int, toX: Int, toY: Int) {
@@ -50,7 +50,7 @@ class ChessPiece: StaticChessPiece {
 
 //Piece Classes
 class Pawn: ChessPiece {
-	override func isPossible( x: Int,  y: Int,  toX: Int,  toY: Int, _ color: Bool) -> Bool {
+	override func isPossible(_ x: Int, _ y: Int, _ toX: Int, _ toY: Int, _ color: Bool) -> Bool {
 		if color == true {
 			if turn == 0 {
 				if toY == y + 1 || toY == y + 2 {
@@ -77,7 +77,7 @@ class Pawn: ChessPiece {
 }
 
 class Bishop: ChessPiece {
-	override func isPossible( x: Int,  y: Int,  toX: Int,  toY: Int, _ color: Bool) -> Bool {
+	override func isPossible(_ x: Int, _ y: Int, _ toX: Int, _ toY: Int, _ color: Bool) -> Bool {
 		if toX - x == toY - y {
 			return true
 		} else {
@@ -87,7 +87,7 @@ class Bishop: ChessPiece {
 }
 
 class Rook: ChessPiece {
-	override func isPossible( x: Int,  y: Int,  toX: Int,  toY: Int, _ color: Bool) -> Bool {
+	override func isPossible(_ x: Int, _ y: Int, _ toX: Int, _ toY: Int, _ color: Bool) -> Bool {
 		if toX - x == 0{
 			if toY - y != 0{
 				return true
