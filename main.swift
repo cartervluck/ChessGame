@@ -20,6 +20,11 @@ class ChessPiece {
 			print("move not possible")
 		}
 	}
+	func inTheWay(between: [Int], current: Int) {
+		for place in between.count {
+			if
+		}
+	}
 }
 
 class Pawn: ChessPiece {
@@ -46,6 +51,19 @@ class Pawn: ChessPiece {
 			}
 		}
 		return false
+	}
+}
+
+class Bishop: ChessPiece {
+	override func isPossible(x: Int, y: Int, toX: Int, toY: Int, color: Bool) -> Bool {
+		if color == true {
+			if (toX - x) == (toY - y) {
+				return true
+			}
+		else {
+			return false
+		}
+		}
 	}
 }
 
