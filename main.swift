@@ -5,13 +5,12 @@ class Board {
 }
 
 
-
+//For accessing in the array
 class StaticChessPiece {
 	var color: Bool = true
 	var x: Int = 0
 	var y: Int = 0
 	var num: Int = 0
-	var alive = true
 	var whoseTurn = true
 	init(color: Bool, x: Int, y: Int, num: Int){
 		self.color = color
@@ -89,16 +88,13 @@ class Bishop: ChessPiece {
 
 class Rook: ChessPiece {
 	override func isPossible(_ x: Int, _ y: Int, _ toX: Int, _ toY: Int, _ color: Bool) -> Bool {
-		if color == true{
-			if toX - x == 0{
-				if toY - y != 0{
-					return true
-				}
-				else{
-					return false
-				}
+		if toX - x == 0{
+			if toY - y != 0{
+				return true
+			} else {
+				return false
 			}
-		else if toY - y == 0{
+		} else if toY - y == 0 {
 			if toX - x != 0{
 				return true
 			}
