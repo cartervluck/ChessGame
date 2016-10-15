@@ -57,7 +57,7 @@ class Pawn: ChessPiece {
 class Bishop: ChessPiece {
 	override func isPossible(x: Int, y: Int, toX: Int, toY: Int, color: Bool) -> Bool {
 		if color == true {
-			if (toX - x) == (toY - y) {
+			if toX - x == toY - y {
 				return true
 			}
 		else {
@@ -67,8 +67,30 @@ class Bishop: ChessPiece {
 	}
 }
 
+class Rook: ChessPiece {
+	override func isPossible(x: Int, y: Int, toX: Int, toY: Int, color: Bool) -> Bool {
+		if color == true{
+			if toX - x == 0{
+				if toY - y != 0{
+					return true
+				}
+				else{
+					return false
+				}
+			}
+		else if toY - y == 0{
+			if toX - x != 0{
+				return true
+			}
+			else{
+				return false
+			}
+		}
+	}
+}
+
 class Board {
 	var boardPieces: [[ChessPiece]] = [[],[var WP1: ChessPiece = Pawn(color = true, x = 0, y = 1, num = 1)]]
 }
 
-var turn = 1
+var turn = 0
