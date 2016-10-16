@@ -1,3 +1,5 @@
+import Foundation
+
 var turn = 0
 
 class Board {
@@ -81,8 +83,12 @@ class Pawn: ChessPiece {
 
 class Bishop: ChessPiece {
 	override func isPossible(_ x: Int, _ y: Int, _ toX: Int, _ toY: Int, _ color: Bool) -> Bool {
-		if toX - x == toY - y {
-			return true
+		if x != toX{
+			if toX - x == toY - y {
+				return true
+			} else {
+				return false
+			}
 		} else {
 			return false
 		}
@@ -94,23 +100,37 @@ class Rook: ChessPiece {
 		if toX - x == 0 {
 			if toY - y != 0 {
 				return true
+			} else {
+				return false
 			}
-			else {
+		} else if toY - y == 0 {
+			if toX - x != 0 {
+				return true
+			} else {
 				return false
 			}
 		}
-	else if toY - y == 0 {
-		if toX - x != 0 {
-			return true
-		}
-		else {
-			return false
+	}
+}
+
+class Knight: ChessPiece {
+	override func isPossible(_ x: Int, _ y: Int, _ toX: Int, _ toY: Int, _ color: Bool) -> Bool {
+			var xDistance = toX - x
+			var yDistance = toY - y
+			var distance = sqrt(pow(xDistance, 2) + pow(yDistance, 2))
+			if distance == sqrt(10) {
+				return true
+			} else {
+				return false
+			}
 		}
 	}
 }
 
 //Board Setup
 var BR1: StaticChessPiece = Rook(color: false, x: 0, y: 0, num: 1)
+var BN1: StaticChessPiece = Knight(color: false, x: 1, y: 0, num: 1)
+var BB1: StaticChessPiece = Bishop(color: false, x: 1, y: 0, num: 1)
 chessBoard.setBoard(setX: 0, setY: 0, piece: BR1)
 
 /*
