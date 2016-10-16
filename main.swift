@@ -84,7 +84,7 @@ class Pawn: ChessPiece {
 class Bishop: ChessPiece {
 	override func isPossible(_ x: Int, _ y: Int, _ toX: Int, _ toY: Int, _ color: Bool) -> Bool {
 		if x != toX{
-			if toX - x == toY - y {
+			if pow(Double(toX - x), 2.0) == pow(Double(toY - y), 2.0) {
 				return true
 			} else {
 				return false
@@ -109,21 +109,72 @@ class Rook: ChessPiece {
 			} else {
 				return false
 			}
+		} else {
+			return false
 		}
 	}
 }
 
 class Knight: ChessPiece {
 	override func isPossible(_ x: Int, _ y: Int, _ toX: Int, _ toY: Int, _ color: Bool) -> Bool {
-			var xDistance = toX - x
-			var yDistance = toY - y
-			var distance = sqrt(pow(xDistance, 2) + pow(yDistance, 2))
-			if distance == sqrt(10) {
+		let xDistance = toX - x
+		let yDistance = toY - y
+		let distance = sqrt(pow(Double(xDistance), 2.0) + pow(Double(yDistance), 2.0))
+		if distance == sqrt(5) {
+			return true
+		} else {
+			return false
+		}
+	}
+}
+
+class Queen: ChessPiece {
+	override func isPossible(_ x: Int, _ y: Int, _ toX: Int, _ toY: Int, _ color: Bool) -> Bool {
+		if toX - x == 0 {
+			if toY - y != 0 {
 				return true
 			} else {
 				return false
 			}
+		} else if toY - y == 0 {
+			if toX - x != 0 {
+				return true
+			} else {
+				return false
+			}
+		} else if pow(Double(toX - x), 2.0) == pow(Double(toY - y), 2.0) {
+			return true
+		} else {
+			return false
 		}
+	}
+}
+
+func printBoard(_ board: [[[StaticChessPiece]]]) {
+	print(board[0])
+	print(board[1])
+	print(board[2])
+	print(board[3])
+	print(board[4])
+	print(board[5])
+	print(board[6])
+	print(board[7])
+}
+
+func printTurn(_ turn: Bool) {
+	if turn {
+		print("It is white's turn.")
+	} else {
+		print("It is black's turn.")
+	}
+}
+
+func printState() {
+	printBoard(chessBoard.boardPieces)
+	if turn % 2 == 0 {
+		printTurn(true)
+	} else {
+		printTurn(false)
 	}
 }
 
